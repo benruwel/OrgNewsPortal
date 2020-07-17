@@ -1,17 +1,41 @@
 package models;
 
-import org.junit.After;
-import org.junit.Before;
+import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 public class UserTest {
 
-    @Before
-    public void setUp() throws Exception {
+    @Test
+    public void setName() {
+        User testUser = setUpUser();
+        testUser.setName("Robert Killmonger");
+        assertNotEquals(setUpUser().getName(), testUser.getName());
     }
 
-    @After
-    public void tearDown() throws Exception {
+    @Test
+    public void setId() {
+        User testUser = setUpUser();
+        testUser.setId(2);
+        assertEquals(2, testUser.getId());
+    }
+
+    @Test
+    public void setRoles() {
+        User testUser = setUpUser();
+        testUser.setRoles("Backend Engineer");
+        assertEquals("Backend Engineer", testUser.getRoles());
+    }
+
+    @Test
+    public void setPosition() {
+        User testUser = setUpUser();
+        testUser.setPosition("Junior Dev");
+        assertEquals("Junior Dev", testUser.getPosition());
+    }
+
+    //helpers
+    public User setUpUser() {
+        return new User("Bob Killmonger","Scrum Master", "Technical Lead");
     }
 }
