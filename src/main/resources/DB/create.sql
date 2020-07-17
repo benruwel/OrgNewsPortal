@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS news (
  id SERIAL PRIMARY KEY,
  title VARCHAR,
  content VARCHAR,
- depaertment_id INTEGER
+ department_id INTEGER
 );
 
 CREATE TABLE IF NOT EXISTS department (

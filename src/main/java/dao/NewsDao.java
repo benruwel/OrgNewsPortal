@@ -3,14 +3,16 @@ package dao;
 import models.Department;
 import models.News;
 
+import java.util.List;
+
 public interface NewsDao {
 
     //create
     void add(News news);
 
     //read
-    void getAll();
-    void getNewsToDepartment(int department_id);
+    List<News> getAll();
+    List<News> getNewsInDepartment(int department_id);
 
     //delete
     void deleteById(int id);
