@@ -6,10 +6,17 @@ public class News {
     private int id;
     private String title;
     private String content;
+    private int department_id;
 
     public News(String title, String content) {
         this.title = title;
         this.content = content;
+    }
+
+    public News(String title, String content, int department_id) {
+        this.title = title;
+        this.content = content;
+        this.department_id = department_id;
     }
 
     public int getId() {
