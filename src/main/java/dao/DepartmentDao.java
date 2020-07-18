@@ -19,4 +19,5 @@ public interface DepartmentDao {
     //delete
     void deleteById(int id);
     void clearAll();
+    void clearAllJoinTable();
 }

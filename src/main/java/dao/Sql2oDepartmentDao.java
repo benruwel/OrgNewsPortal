@@ -99,6 +99,7 @@ public class Sql2oDepartmentDao implements DepartmentDao {
         } catch (Sql2oException ex){
             System.out.println(ex);
         }
+
     }
 
     @Override
@@ -112,4 +113,14 @@ public class Sql2oDepartmentDao implements DepartmentDao {
             System.out.println(ex);
         }
     }
+     public void clearAllJoinTable() {
+         String sql = "DELETE from departments_users";
+         String resetSql = "ALTER SEQUENCE departments_users_id_seq WITH 1;";
+         try (Connection con = sql2o.open()) {
+             con.createQuery(sql).executeUpdate();
+             con.createQuery(resetSql).executeUpdate();
+         } catch (Sql2oException ex) {
+             System.out.println(ex);
+         }
+     }
 }

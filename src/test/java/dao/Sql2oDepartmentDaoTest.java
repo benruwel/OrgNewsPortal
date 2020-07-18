@@ -5,6 +5,7 @@ import models.User;
 import org.junit.*;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
+import org.sql2o.Sql2oException;
 
 import javax.swing.plaf.synth.SynthTextAreaUI;
 
@@ -27,6 +28,7 @@ public class Sql2oDepartmentDaoTest {
 
         departmentDao = new Sql2oDepartmentDao(sql2o);
         userDao = new Sql2oUserDao(sql2o);
+
         conn = sql2o.open();
     }
 
@@ -34,6 +36,7 @@ public class Sql2oDepartmentDaoTest {
     public  void tearDown() throws Exception {
         System.out.println("Clearing database");
         departmentDao.clearAll();
+        departmentDao.clearAllJoinTable();
         userDao.clearAll();
     }
 
@@ -105,5 +108,4 @@ public class Sql2oDepartmentDaoTest {
         userDao.add(user);
         return user;
     }
-
 }

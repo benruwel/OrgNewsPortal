@@ -31,6 +31,7 @@ public class Sql2oUserDaoTest {
     public  void tearDown() throws Exception {
         System.out.println("Clearing database");
         departmentDao.clearAll();
+        departmentDao.clearAllJoinTable();
         userDao.clearAll();
     }
 
@@ -59,6 +60,8 @@ public class Sql2oUserDaoTest {
         departmentDao.addDepartmentToUser(testUser, testDepartment2);
         Department[] departments = {testDepartment1, testDepartment2};
         assertEquals(Arrays.asList(departments), userDao.getAllDepartmentsOfUser(testUser.getId()));
+        departmentDao.clearAll();
+        userDao.clearAll();
     }
 
     @Test
