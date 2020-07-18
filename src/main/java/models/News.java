@@ -8,10 +8,10 @@ public class News {
     private String content;
     private int department_id;
 
-    public News(String title, String content) {
-        this.title = title;
-        this.content = content;
-    }
+//    public News(String title, String content) {
+//        this.title = title;
+//        this.content = content;
+//    }
 
     public News(String title, String content, int department_id) {
         this.title = title;
@@ -41,6 +41,14 @@ public class News {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public int getDepartment_id() {
+        return department_id;
+    }
+
+    public void setDepartment_id(int department_id) {
+        this.department_id = department_id;
     }
 
     @Override

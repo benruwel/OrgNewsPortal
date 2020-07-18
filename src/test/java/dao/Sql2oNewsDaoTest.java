@@ -1,9 +1,8 @@
 package dao;
 
+import models.Department;
 import models.News;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 import org.sql2o.Sql2o;
 import org.sql2o.Connection;
 
@@ -12,24 +11,30 @@ import org.sql2o.Connection;
 import static org.junit.Assert.*;
 
 public class Sql2oNewsDaoTest {
-    private Connection conn;
-    private Sql2oNewsDao newsDao;
-    private Sql2oDepartmentDao departmentDao;
+    private static Connection conn;
+    private static Sql2oNewsDao newsDao;
+    private static Sql2oDepartmentDao departmentDao;
 
-    @Before
-    public void setUp() throws Exception {
+    @BeforeClass
+    public static void setUp() throws Exception {
         String connectionString = "jdbc:postgresql://localhost:5432/org_news_portal_test";
         Sql2o sql2o = new Sql2o(connectionString, "User", "7181");
         newsDao = new Sql2oNewsDao(sql2o);
         departmentDao = new Sql2oDepartmentDao(sql2o);
-        conn =sql2o.open();
+        conn = sql2o.open();
     }
 
     @After
     public void tearDown() throws Exception {
-        conn.close();
+        System.out.println("Clearing database");
         newsDao.clearAll();
         departmentDao.clearAll();
+    }
+
+    @AfterClass
+    public static void shutDown() throws Exception {
+        conn.close();
+        System.out.println("Closing connection");
     }
 
     @Test
@@ -39,24 +44,54 @@ public class Sql2oNewsDaoTest {
     }
 
     @Test
-    public void getAll() {
+    public void addedNewsAreReturnedFromGetAll() throws Exception {
+        News testNews = setUpNews();
+        assertEquals(1, newsDao.getAll().size());
     }
 
     @Test
     public void getNewsInDepartment() {
+        Department testDepartment = setUpDepartment();
+        News testNews1 = setUpNewsForDepartment(testDepartment);
+        News testNews2 = setUpNewsForDepartment(testDepartment);
+        assertEquals(2, newsDao.getAllNewsInDepartment(testDepartment.getId()).size());
+
     }
 
     @Test
     public void deleteById() {
+        News testNews = setUpNews();
+        News testNews2 = setUpNews();
+        assertEquals(2, newsDao.getAll().size());
+        newsDao.deleteById(testNews.getId());
+        assertEquals(1, newsDao.getAll().size());
     }
 
     @Test
     public void clearAll() {
+        News testNews = setUpNews();
+        News testNews2 = setUpNews();
+        newsDao.clearAll();
+        assertEquals(0, newsDao.getAll().size());
     }
 
     //helpers
     public News setUpNews() {
-        return new News("Current Sprints", "We have added 10 more sprints, and happy holidays, kinda");
+        News news = new News("Current Sprints", "We have added 10 more sprints, and happy holidays, kinda", 3);
+        newsDao.add(news);
+        return news;
+    }
+
+    public News setUpNewsForDepartment(Department department) {
+        News news = new News("Current Sprints", "We have added 10 more sprints, and happy holidays, kinda", department.getId());
+        newsDao.add(news);
+        return news;
+    }
+
+    public Department setUpDepartment() {
+        Department department = new Department("Human Resources", "We make sure everybody enjoys working",23);
+        departmentDao.add(department);
+        return department;
     }
 
 }

@@ -42,7 +42,7 @@ public class NewsTest {
 
     //helpers
     public News setUpNews() {
-        return new News("Current Sprints", "We have added 10 more sprints, and happy holidays, kinda");
+        return new News("Current Sprints", "We have added 10 more sprints, and happy holidays, kinda",4);
     }
 
 }

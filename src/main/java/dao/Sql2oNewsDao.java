@@ -37,10 +37,10 @@ public class Sql2oNewsDao implements NewsDao {
     }
 
     @Override
-    public List<News> getNewsInDepartment(int department_id) {
+    public List<News> getAllNewsInDepartment(int department_id) {
         try (Connection con = sql2o.open()) {
             return con.createQuery("SELECT * FROM news WHERE department_id = :department_id")
-                    .addParameter("restaurantId", department_id)
+                    .addParameter("department_id", department_id)
                     .executeAndFetch(News.class);
         }
     }
@@ -60,8 +60,10 @@ public class Sql2oNewsDao implements NewsDao {
     @Override
     public void clearAll() {
         String sql = "DELETE from news";
+        String resetSql = "ALTER SEQUENCE news_id_seq RESTART WITH 1;";
         try (Connection con = sql2o.open()) {
             con.createQuery(sql).executeUpdate();
+            con.createQuery(resetSql).executeUpdate();
         } catch (Sql2oException ex) {
             System.out.println(ex);
         }
