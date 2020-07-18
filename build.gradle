@@ -17,4 +17,5 @@ dependencies {
     compile 'org.slf4j:slf4j-simple:1.7.21'
     compile 'org.sql2o:sql2o:1.5.4'
     compile group: 'org.postgresql', name: 'postgresql', version: '42.2.5'
+    compile 'com.google.code.gson:gson:2.5'
 }
