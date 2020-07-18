@@ -47,15 +47,25 @@ public class App {
             }
         });
 
-        get("/departments/:id", "application/json", (req, res) -> {
+        get("/department/:id", "application/json", (req, res) -> {
             int departmentId = Integer.parseInt(req.params("id"));
             Department departmentToFind = departmentDao.findById(departmentId);
 
             if (departmentToFind == null){
-                throw new ApiException(404, String.format("No department with the id: \"%s\" exists", req.params("id")));
+                throw new ApiException(404, String.format("No department with the id: %s exists", req.params("id")));
             }
 
             return gson.toJson(departmentToFind);
+        });
+
+        delete("department/:department_id", (req, res) -> {
+            int department_id = Integer.parseInt(req.params("department_id"));
+            Department departmentToDelete = departmentDao.findById(department_id);
+            departmentDao.deleteById(department_id);
+            if (departmentToDelete == null){
+                throw new ApiException(404, String.format("No department with the id: \"%s\" exists", req.params("id")));
+            }
+            return gson.toJson(departmentToDelete);
         });
 
         //USERS
