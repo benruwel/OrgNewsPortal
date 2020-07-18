@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS department (
 
 CREATE TABLE IF NOT EXISTS departments_users (
  id SERIAL PRIMARY KEY,
- depaertment_id INTEGER,
+ department_id INTEGER,
  user_id INTEGER
 );
 

@@ -23,8 +23,8 @@ public class UserTest {
     @Test
     public void setRoles() {
         User testUser = setUpUser();
-        testUser.setRoles("Backend Engineer");
-        assertEquals("Backend Engineer", testUser.getRoles());
+        testUser.setRole("Backend Engineer");
+        assertEquals("Backend Engineer", testUser.getRole());
     }
 
     @Test

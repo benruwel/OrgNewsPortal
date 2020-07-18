@@ -5,12 +5,12 @@ import java.util.Objects;
 public class User {
     private String name;
     private int id;
-    private String roles;
+    private String role;
     private String position;
 
-    public User(String name, String roles, String position) {
+    public User(String name, String role, String position) {
         this.name = name;
-        this.roles = roles;
+        this.role = role;
         this.position = position;
     }
 
@@ -30,12 +30,12 @@ public class User {
         this.id = id;
     }
 
-    public String getRoles() {
-        return roles;
+    public String getRole() {
+        return role;
     }
 
-    public void setRoles(String roles) {
-        this.roles = roles;
+    public void setRole(String roles) {
+        this.role = roles;
     }
 
     public String getPosition() {
@@ -53,12 +53,12 @@ public class User {
         User user = (User) o;
         return id == user.id &&
                 name.equals(user.name) &&
-                roles.equals(user.roles) &&
+                role.equals(user.role) &&
                 position.equals(user.position);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, id, roles, position);
+        return Objects.hash(name, id, role, position);
     }
 }
