@@ -8,7 +8,7 @@
 <p align="center">
 <img src="https://img.icons8.com/doodle/480/000000/news.png" width="200" height="200"/>  
 
-  <h3 align="center">Organisational News Portal</h3>
+  <h3 align="center" style="color:yellow" >Organisational News Portal</h3>
 
   <p align="center">
     REST API for querying and retrieving scoped news and information within an organization
