@@ -148,13 +148,13 @@ You may also choose to build this project locally and consume the api with the l
 
 2. You will need to create the databases with a specific schema, navigate to src/main/resources/DB and run this command
     ```
-    $ psql < create.sql
+    $ psql > create.sql
     ```
     This creates org_news_portal (developmetn db) and org_news_portal_test (test db) on your local machine
 
     If in any instance you will require to delete the databases, run this:
     ```sh
-    $ psql < drop.sql
+    $ psql > drop.sql
     ```
 
 3. Then to run the project, navigate to your project's root directory run the project with
